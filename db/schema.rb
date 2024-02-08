@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_162003) do
     t.string "last_name"
     t.integer "zip_code"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
