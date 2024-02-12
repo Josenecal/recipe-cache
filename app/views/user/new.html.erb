@@ -1,0 +1,18 @@
+<% error = flash[:error]%>
+<% if error %>
+    <div class="warnings">
+        <%= error %>
+    </div>
+<% end %>
+<div class = "user_creation_form", show = false>
+    Create an account by entering your information below:
+    <%= form_with url: "/user/create", local: true do |f| %>
+        <%= f.label :"email" %>
+        <%= f.text_field :email %><br>
+        <%= f.label :"password" %>
+        <%= f.password_field :password %><br>
+        <%= f.label :"confirm password" %>
+        <%= f.password_field :password_confirmation %><br>
+        <%= f.submit "Create Account"%>
+     <% end %>
+</div>
