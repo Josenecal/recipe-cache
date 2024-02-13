@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :require_login
+    helper_method :"logged_in?"
 
     def current_user
         @user ||= User.find_by(id: session[:user_id])
@@ -24,7 +25,7 @@ class ApplicationController < ActionController::Base
     end
 
     def logged_in?
-        session[:user_id]
+        session[:user_id].present? 
     end
 
 end
