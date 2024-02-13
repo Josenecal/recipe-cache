@@ -10,10 +10,12 @@ Rails.application.routes.draw do
 
   root "session#index"
 
+  get "/logout" => "session#destroy"
+
   get "/dashboard" => "user#dashboard"
 
   get "/user/new" => "user#new" 
   post "/user/create" => "user#create" 
   post "/user/login" => "user#login"
-  
+
 end
