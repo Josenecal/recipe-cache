@@ -35,7 +35,7 @@ class UserController < ApplicationController
     private
 
     def new_user_params
-        params.require(:email, :password).permit(:first_name, :last_name, :zip_code)
+        params.permit(:first_name, :last_name, :zip_code, :email, :password)
     end
 
     def login_params
