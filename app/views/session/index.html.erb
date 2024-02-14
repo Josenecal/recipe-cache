@@ -1,0 +1,18 @@
+<%# ToDo: These error display boxes can probably be abstracted somewhere for more general use in the app! %>
+<% error = flash[:error]%>
+<% if error %>
+    <div class="warnings">
+        <%= error %>
+    </div>
+<% end %>
+<h1>Welcome!</h1>
+<div class="user_login">
+    Please log in below, or <a href="/user/new">create an account</a>
+    <%= form_with url: "/user/login", local: true do |f| %>
+        <%= f.label :"email" %>
+        <%= f.text_field :email, required: true %><br>
+        <%= f.label :"password" %>
+        <%= f.password_field :password, required: true %><br>
+        <%= f.submit :"Log In"%>
+    <% end %>
+</div>
