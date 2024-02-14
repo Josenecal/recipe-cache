@@ -72,3 +72,5 @@ group :test do
   gem "selenium-webdriver"
   gem 'database_cleaner-active_record' # Will require further configuration
 end
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
