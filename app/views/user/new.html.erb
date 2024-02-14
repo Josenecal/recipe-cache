@@ -7,6 +7,10 @@
 <div class = "user_creation_form", show = false>
     Create an account by entering your information below:
     <%= form_with url: "/user/create", local: true do |f| %>
+        <%= f.label :"First Name" %>
+        <%= f.text_field :first_name, required: true %><br>
+        <%= f.label :"Last Name" %>
+        <%= f.text_field :last_name, required: true %><br>
         <%= f.label :"email" %>
         <%= f.text_field :email, required: true %><br>
         <%= f.label :"password" %>
