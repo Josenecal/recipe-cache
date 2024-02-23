@@ -13,7 +13,24 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< HEAD
 
+=======
+<<<<<<< Updated upstream
+=======
+
+ /*
+    =-=-=-=-=-=-=-=-= NOTES  =-=-=-=-=-=-=-=-=
+
+    The black at the edge op the current logo image is #060609, if we
+    decide we ever want to use it elsewhere
+ */
+
+ * {
+    margin: 0;
+    padding: 0;
+ }
+>>>>>>> e8fa5af (wip merge stashed style changes)
  nav {
     & ul {
         background-color: #060609;
@@ -40,3 +57,54 @@
 
     }
 }
+<<<<<<< HEAD
+=======
+.form-container {
+    
+}
+#session-form-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+.error-banner {
+    width: 90%;
+    min-height: 25px;
+    padding: 10px;
+    background-color: red;
+    border-style: solid;
+    border-width: 8px;
+    border-color: darkred;
+    border-radius: 15px;
+
+    & p {
+        color: black;
+    }
+}
+.message-banner {
+    width: 90%;
+    min-height: 25px;
+    padding: 10px;
+    background-color: green;
+    border-style: solid;
+    border-width: 8px;
+    border-color: darkgreen;
+    border-radius: 15px;
+
+    & p {
+        color: black;
+    }
+}
+.registration-form {
+    display: none;
+}
+.form-container {
+    #registration-form {
+        display: none;
+    }
+    #register-button {
+        border: none;
+    }
+}
+>>>>>>> Stashed changes
+>>>>>>> e8fa5af (wip merge stashed style changes)
