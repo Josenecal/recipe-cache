@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   post "/user/create" => "user#create" 
   post "/user/login" => "user#login"
 
+  get "/recipes" => "recipes#index"
+  
+  get "/friends" => "friends#index"
 end
