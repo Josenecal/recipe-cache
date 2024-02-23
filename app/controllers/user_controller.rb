@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-    skip_before_action :require_login, only: [:new, :create, :login]
+    skip_before_action :require_login, only: [:create, :login]
 
     def dashboard
     end
@@ -42,12 +42,12 @@ class UserController < ApplicationController
     def validate_password
         if params[:password].nil?
             flash[:error] = "Password is required"
-            render :new
+            redirect_back(fallback_location: root_path) 
         elsif params[:password]&.strip&.match? params[:password_confirmation]&.strip
             true
         else
             flash[:error] = "Passwords do not match"
-            render :new
+            redirect_back(fallback_location: root_path)
         end
     end
     
