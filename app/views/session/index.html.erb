@@ -1,18 +1,50 @@
-<%# ToDo: These error display boxes can probably be abstracted somewhere for more general use in the app! %>
-<% error = flash[:error]%>
-<% if error %>
-    <div class="warnings">
-        <%= error %>
+<%# Display System messages %>
+<%# <%= render(partial: "system_messages", locals: { error: flash[:error], message: flash[:message] }) if flash[:error] || flash[:message] %>
+
+<%# Display LogIn / Register Forms and toggles %>
+<div class="background-screen">
+    <div class="form-container" id="session-form-container">
+        <div class="button-box">
+            <div id="active-btn"></div>
+            <button class="form-toggle-button" id="session-form-login-toggle-button" onclick="login()">LOG IN</button>
+            <button class="form-toggle-button" id="session-form-register-toggle-button" onclick="register()">REGISTER</button>
+        </div>
+        <%= form_with url: "/user/login", local: true, class: "session-form", id: "login-form" do |f| %>
+            <%= f.email_field :login_email, required: true, placeholder: "EMAIL", class: "input-field" %><br>
+            <%= f.password_field :login_password, required: true, placeholder: "PASSWORD", class: "input-field" %><br>
+            <%= f.submit "LOG IN", class: "submit-button" %>
+        <% end %>
+
+        <%= form_with url: "/user/create", local: true, class: "session-form", id: "registration-form" do |f| %>
+            <%= f.text_field :first_name, required: true, placeholder: "FIRST NAME", class: "input-field" %><br>
+            <%= f.text_field :last_name, required: true, placeholder: "LAST NAME", class: "input-field" %><br>
+            <%= f.email_field :email, required: true, placeholder: "EMAIL", class: "input-field" %><br>
+            <%= f.password_field :password, required: true, placeholder: "PASSWORD", class: "input-field" %><br>
+            <%= f.password_field :password_confirmation, required: true, placeholder: "CONFIRM PASSWORD", class: "input-field" %><br>
+            <%= f.submit "CREATE ACCOUNT", class: "submit-button"%>
+        <% end %>
     </div>
-<% end %>
-<h1>Welcome!</h1>
-<div class="user_login">
-    Please log in below, or <a href="/user/new">create an account</a>
-    <%= form_with url: "/user/login", local: true do |f| %>
-        <%= f.label :"email" %>
-        <%= f.text_field :email, required: true %><br>
-        <%= f.label :"password" %>
-        <%= f.password_field :password, required: true %><br>
-        <%= f.submit :"Log In"%>
-    <% end %>
 </div>
+
+<script type='text/javascript'>
+
+    var loginForm = document.getElementById("login-form");
+    var registerForm = document.getElementById("registration-form");
+    var activeBtn = document.getElementById("active-btn");
+
+    function register() {
+        registerForm.display = "block";
+        loginForm.style.left = "-400px";
+        registerForm.style.left = "+50px";
+        activeBtn.style.left = "+110px";
+        loginForm.display = "none";
+    }
+
+    function login() {
+        loginForm.display = "block";
+        loginForm.style.left = "50px";
+        registerForm.style.left = "450px";
+        activeBtn.style.left = "0";
+        registerForm.display = "none";
+    }
+</script>

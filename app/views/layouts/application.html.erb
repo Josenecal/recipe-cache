@@ -11,6 +11,8 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render(partial: "nav_bar") if logged_in? %>
+    <%= render(partial: "system_messages", locals: { error: flash[:error], message: flash[:message] }) if flash[:error] || flash[:message] %>
+    <%= yield %> 
   </body>
 </html>

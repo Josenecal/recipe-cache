@@ -12,9 +12,8 @@ Rails.application.routes.draw do
 
   get "/logout" => "session#destroy"
 
-  get "/dashboard" => "user#dashboard"
+  get "/dashboard" => "dashboard#index"
 
-  get "/user/new" => "user#new" 
   post "/user/create" => "user#create" 
   post "/user/login" => "user#login"
 

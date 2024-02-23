@@ -1,15 +1,9 @@
 class UserController < ApplicationController
-    skip_before_action :require_login, only: [:new, :create, :login]
-
-    def dashboard
-    end
-
-    def new
-    end
-
+    skip_before_action :require_login, only: [:create, :login]
+    
     def login
-        matching_user = User.find_by email: login_params[:email]
-        if matching_user.present? && matching_user.authenticate(login_params[:password])
+        matching_user = User.find_by email: login_params[:login_email]
+        if matching_user.present? && matching_user.authenticate(login_params[:login_password])
             log_in(matching_user)
             flash[:message] = "Welcome back, #{matching_user.first_name}!"
             redirect_to "/dashboard"
@@ -39,18 +33,18 @@ class UserController < ApplicationController
     end
 
     def login_params
-        params.permit(:email, :password)
+        params.permit(:login_email, :login_password)
     end
 
     def validate_password
         if params[:password].nil?
             flash[:error] = "Password is required"
-            render :new
+            redirect_back(fallback_location: root_path) 
         elsif params[:password]&.strip&.match? params[:password_confirmation]&.strip
             true
         else
             flash[:error] = "Passwords do not match"
-            render :new
+            redirect_back(fallback_location: root_path)
         end
     end
     
