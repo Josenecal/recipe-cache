@@ -4,9 +4,6 @@ class UserController < ApplicationController
     def dashboard
     end
 
-    def new
-    end
-
     def login
         matching_user = User.find_by email: login_params[:login_email]
         if matching_user.present? && matching_user.authenticate(login_params[:login_password])

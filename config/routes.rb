@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   get "/dashboard" => "user#dashboard"
 
-  get "/user/new" => "user#new" 
   post "/user/create" => "user#create" 
   post "/user/login" => "user#login"
 
