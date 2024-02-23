@@ -1,9 +1,6 @@
 class UserController < ApplicationController
     skip_before_action :require_login, only: [:create, :login]
-
-    def dashboard
-    end
-
+    
     def login
         matching_user = User.find_by email: login_params[:login_email]
         if matching_user.present? && matching_user.authenticate(login_params[:login_password])
