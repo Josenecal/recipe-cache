@@ -13,11 +13,6 @@
  *= require_tree .
  *= require_self
  */
-<<<<<<< HEAD
-
-=======
-<<<<<<< Updated upstream
-=======
 
  /*
     =-=-=-=-=-=-=-=-= NOTES  =-=-=-=-=-=-=-=-=
@@ -30,7 +25,6 @@
     margin: 0;
     padding: 0;
  }
->>>>>>> e8fa5af (wip merge stashed style changes)
  nav {
     & ul {
         background-color: #060609;
@@ -57,8 +51,6 @@
 
     }
 }
-<<<<<<< HEAD
-=======
 .form-container {
     
 }
@@ -106,5 +98,3 @@
         border: none;
     }
 }
->>>>>>> Stashed changes
->>>>>>> e8fa5af (wip merge stashed style changes)
