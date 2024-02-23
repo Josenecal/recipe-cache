@@ -24,6 +24,7 @@
  * {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
  }
  nav {
     & ul {
@@ -51,50 +52,111 @@
 
     }
 }
-.form-container {
-    
+.background-screen {
+    height: 100vh;
+    width: 100%;
+    background-image: radial-gradient(rgb(216, 204, 171), #060609, #060609);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+
+
 }
 #session-form-container {
+    width: 380px;
+    height: 480px;
     position: relative;
-    top: 50%;
-    left: 50%;
-}
-.error-banner {
-    width: 90%;
-    min-height: 25px;
-    padding: 10px;
-    background-color: red;
-    border-style: solid;
-    border-width: 8px;
-    border-color: darkred;
-    border-radius: 15px;
+    margin: 6% auto;
+    background: white;
+    padding: 5px;
+    box-shadow: 5px 5px 20px lightslategrey;
+    border-radius: 30px;
+    background-color: #060609;
+    overflow-x: hidden;
 
-    & p {
-        color: black;
+    .button-box {
+        width: 220px;
+        margin: 35px auto;
+        position: relative;
+        box-shadow: 0px 0px 9px lightslategrey;
+        border-radius: 30px;
+        background-color: #2f2f35;
     }
-}
-.message-banner {
-    width: 90%;
-    min-height: 25px;
-    padding: 10px;
-    background-color: green;
-    border-style: solid;
-    border-width: 8px;
-    border-color: darkgreen;
-    border-radius: 15px;
+    .form-toggle-button {
+        padding: 10px 30px;
+        width: 45%;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        outline: none;
+        position: relative;
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+    }
+    #active-btn {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 110px;
+        height: 100%;
+        background-color: lightslategray;
+        border-radius: 30px;
+        transition: 0.5s;
+    }
+    .session-form {
+        top: 180px;
+        position: absolute;
+        width: 280px;
+        transition: 0.5s;
+    }
+    .input-field {
+        width: 100%;
+        padding: 10px 0;
+        margin: 5px 0;
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+        border-bottom: 1px solid whitesmoke;
+        outline: none;
+        background: transparent;
+        color: whitesmoke;
+    }
+    .submit-button {
+        width: 85%;
+        padding: 10px 30px;
+        cursor: pointer;
+        display: block;
+        margin: auto;
+        background: #2f2f35;
+        border: 0;
+        outline: none;
+        border-radius: 30px;
+    }
+    #login-form {
+        left: 50px;
+    }
 
-    & p {
-        color: black;
-    }
-}
-.registration-form {
-    display: none;
-}
-.form-container {
     #registration-form {
-        display: none;
+        left: 450px;
     }
-    #register-button {
-        border: none;
+}
+.system-messages {
+    width: 90%;
+    min-height: 25px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 8px;
+    border-radius: 15px;
+    .system-error {
+        background-color: red;
+        border-color: darkred;
+    }
+    .system-message {
+        background-color: green;
+        border-color: darkgreen;
+    }
+    & p {
+        color: black;
     }
 }

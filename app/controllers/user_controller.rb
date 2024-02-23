@@ -8,8 +8,8 @@ class UserController < ApplicationController
     end
 
     def login
-        matching_user = User.find_by email: login_params[:email]
-        if matching_user.present? && matching_user.authenticate(login_params[:password])
+        matching_user = User.find_by email: login_params[:login_email]
+        if matching_user.present? && matching_user.authenticate(login_params[:login_password])
             log_in(matching_user)
             flash[:message] = "Welcome back, #{matching_user.first_name}!"
             redirect_to "/dashboard"
@@ -39,7 +39,7 @@ class UserController < ApplicationController
     end
 
     def login_params
-        params.permit(:email, :password)
+        params.permit(:login_email, :login_password)
     end
 
     def validate_password
