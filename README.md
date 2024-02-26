@@ -1,4 +1,4 @@
-# Recipe Cache (A Demo Project)
+# Recipe Cache: A Demo Project by [Joe Senecal](https://github.com/josenecal)
 
 ### Project Status: <span style="color:orange">IDEATION/TESTING</span>
 We're building some of the core infrastructure while balancing useful features with unnecessary gimics
