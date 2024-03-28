@@ -1,0 +1,13 @@
+<div class="main-content">
+    <h1>THIS IS WHERE NEW RECIPES WILL BE UPLOADED</h1>
+    <%=form_with url: "/recipes/create", local: true, class: "", id: "new-recipe-form" do |f| %>
+        <h2>Recipe Information</h2>
+        <%= f.text_field :name, placeholder: "TITLE", required: true, class: "input-field" %>
+        <%= f.text_field :description, placeholder: "DESCRIPTION" %>
+d
+        <h2>Ingredients</h2>
+        <%= f.collection_select :id, Ingredient.all, :id, :name, prompt: true %>
+        <%# <%= f.button "Add Another", id="add-another-ingredient" %> %>
+    <%end%>
+
+</div>
