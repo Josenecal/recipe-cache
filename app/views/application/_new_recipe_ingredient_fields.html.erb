@@ -2,6 +2,8 @@
     <div class='field'>
         <%# "Object in Nested Form: #{f&.object || 'nil'}" %>
         <%= f.text_field :name, placeholder: "Ingredient Name" %>
+        <%= f.text_field :ammount, placeholder: "Ingredient Ammount" %>
+        <%= f.text_field :preparation, placeholder: "Ingredient Preparation" %>
     </div>
-    <%= link_to_remove_association "remove ingredient", f %>
+    <%= link_to_remove_association "Remove Ingredient", f %>
 </div>
