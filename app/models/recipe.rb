@@ -1,5 +1,11 @@
 class Recipe < ApplicationRecord
     has_many :users, through: :user_recipes
-    has_many :attempts, through: :recipe_attempts
+    # has_many: :recipe_attempts
+    # has_many :attempts, through: :recipe_attempts
+    has_many :recipe_ingredients, inverse_of: :recipe
     has_many :ingredients, through: :recipe_ingredients
+    has_many :recipe_steps
+
+    accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
+    accepts_nested_attributes_for :recipe_steps, reject_if: :all_blank, allow_destroy: true
 end
