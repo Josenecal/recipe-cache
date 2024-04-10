@@ -1,13 +1,20 @@
 <div class="main-content">
-    <h1>THIS IS WHERE NEW RECIPES WILL BE UPLOADED</h1>
-    <%=form_with url: "/recipes/create", local: true, class: "", id: "new-recipe-form" do |f| %>
+    <h1>Add A New Recipe</h1>
+    <%= form_for @new_recipe do |f| %>
         <h2>Recipe Information</h2>
-        <%= f.text_field :name, placeholder: "TITLE", required: true, class: "input-field" %>
-        <%= f.text_field :description, placeholder: "DESCRIPTION" %>
-d
-        <h2>Ingredients</h2>
-        <%= f.collection_select :id, Ingredient.all, :id, :name, prompt: true %>
-        <%# <%= f.button "Add Another", id="add-another-ingredient" %> %>
+        <div class="field"><%= f.text_field :name, placeholder: "TITLE", required: true, class: "input-field" %></div>
+        <div class="field"><%= f.text_field :description, placeholder: "DESCRIPTION" %></div>
+        <%# "Object in Top-Level Form: #{f.object || 'nil'}" %>
+        <h3>Ingredients</h3>
+        <div id="recipe_ingredients">
+            <%= f.fields_for :recipe_ingredient do |ingredient_form| %>
+                <%# "Object in fields_for Form: #{ingredient_form || 'nil'}" %>
+                <%= render "new_recipe_ingredient_fields", f: f %>
+            <% end %>
+            <div class="links">
+                <%= link_to_add_association 'Add An Ingredient', f, 'recipe_ingredients', partial: 'new_recipe_ingredient_fields', render_options: {fields_for: :recipe_ingredient, locals: {f: f}} %>
+            </div>
+        </div>
     <%end%>
 
 </div>
