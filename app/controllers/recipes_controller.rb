@@ -1,11 +1,14 @@
 class RecipesController < ApplicationController
 
     def index
+        @user_recipes = current_user.recipes
     end
 
     def new
         @new_recipe = Recipe.new
         @new_recipe.recipe_ingredients.new
+        @new_recipe.user_recipes.new
+        @user = current_user
     end
 
     def create
@@ -19,9 +22,13 @@ class RecipesController < ApplicationController
         end
     end
 
+    def show
+
+    end
+
     private
 
     def new_recipe_params
-        params.require(:recipe).permit(:name, :description, recipe_ingredients_attributes: [:id, :name, :ammount, :preparation, :_destroy])
+        params.require(:recipe).permit(:name, :description, recipe_ingredients_attributes: [:id, :name, :ammount, :preparation, :_destroy], user_recipes_attributes: [:user_id])
     end
 end
