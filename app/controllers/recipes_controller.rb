@@ -4,6 +4,7 @@ class RecipesController < ApplicationController
     end
 
     def new
+        @new_recipe = Recipe.new
     end
 
 end
