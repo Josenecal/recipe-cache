@@ -3,11 +3,14 @@
     <br>
     <h3>Status: Preview<h3>
     <br>
-    <p>From here, you'll be able to see a list of your saved recipes. By clicking on any recipe, you can open a view for it, and even edit or possible even version it if you are the owner. You'll also have links to browse a library of public recipes that you can add to your collection, and to a new recipe input form to save an originally-authored or lovingly-copied recipe to your public or private library.</p>
+    <p>From here, you'll be able to see a list of your saved recipes. By clicking on any recipe, you can open a view for it, and even edit or possibly even version it if you are the owner. You'll also have links to browse a library of public recipes that you can add to your collection, and to a new recipe input form to save an originally-authored or lovingly-copied recipe to your public or private library.</p>
+    <br>
+    <h3>Try it out!</h3>
+    <%= link_to "CREATE A RECIPE", "/recipes/new" %><br>
     <br>
     <h3>Your Current Recipes</h3>
     <% @user_recipes.each do |recipe| %>
-        <h4><%=recipe.name%></h4>
+        <h4><%= link_to "#{recipe.link_name}", "/recipes/#{recipe.id}" %></h4>
     <%end%>
 
 </div>

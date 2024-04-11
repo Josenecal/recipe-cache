@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post "/user/login" => "user#login"
 
   get "/recipes/new" => "recipes#new"
+  get "/recipes/:id" => "recipes#show"
   get "/recipes" => "recipes#index"
   post "/recipes/create" => "recipes#create"
   

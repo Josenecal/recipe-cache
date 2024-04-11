@@ -8,12 +8,13 @@ class RecipesController < ApplicationController
         @new_recipe = Recipe.new
         @new_recipe.recipe_ingredients.new
         @new_recipe.user_recipes.new
+        @new_recipe.recipe_steps.new
         @user = current_user
     end
 
     def create
-        @new_recipe = Recipe.new(new_recipe_params)
-        if @new_recipe.save
+        new_recipe = order_children(Recipe.new(new_recipe_params))
+        if new_recipe.save
             flash[:message] = "Recipe Created!"
             redirect_to "/recipes"
         else
@@ -23,12 +24,29 @@ class RecipesController < ApplicationController
     end
 
     def show
-
+        @recipe = Recipe.includes(:recipe_steps, :recipe_ingredients).find(params[:id])
     end
 
     private
 
     def new_recipe_params
-        params.require(:recipe).permit(:name, :description, recipe_ingredients_attributes: [:id, :name, :ammount, :preparation, :_destroy], user_recipes_attributes: [:user_id])
+        params.require(:recipe).permit(
+            :name,
+            :description,
+            recipe_ingredients_attributes: [:id, :name, :ammount, :preparation, :_destroy],
+            user_recipes_attributes: [:user_id],
+            recipe_steps_attributes: [:id, :step_number, :description, :_destroy]
+            )
+    end
+
+    def order_children(recipe)
+        # Currently just for steps, could be for ingredients too?
+        i = 1
+        recipe.recipe_steps.each do |step|
+            step.step_number = i
+            i += 1
+        end
+
+        recipe
     end
 end

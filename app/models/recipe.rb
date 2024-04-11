@@ -10,4 +10,12 @@ class Recipe < ApplicationRecord
     accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
     accepts_nested_attributes_for :user_recipes, reject_if: :all_blank, allow_destroy: true
     accepts_nested_attributes_for :recipe_steps, reject_if: :all_blank, allow_destroy: true
+
+    def link_name
+        if description
+            "#{name} - #{description[0..50]}"
+        else
+            name
+        end
+    end
 end
