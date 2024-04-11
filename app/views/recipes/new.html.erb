@@ -1,0 +1,57 @@
+<div class="main-content">
+    <h1>Add A New Recipe</h1>
+    <%= form_for @new_recipe, url: "/recipes/create" do |f| %>
+        <div class="user-attribution_field">
+        <%= f.fields_for :user_recipes do |u| %>
+            <%= u.hidden_field 'user_id', value: @user.id %>
+        <% end %>
+        </div>
+        <h2>Recipe Information</h2>
+        <div class="field"><%= f.text_field :name, placeholder: "TITLE", required: true, class: "input-field" %></div>
+        <div class="field"><%= f.text_field :description, placeholder: "DESCRIPTION" %></div>
+        <h3>Ingredients</h3>
+        <div id="recipe_ingredients">
+            <%= f.fields_for :recipe_ingredients do |recipe_ingredient| %>
+                <%= render "new_recipe_ingredient_fields", :f => recipe_ingredient %>
+            <% end %>
+            <div class="links">
+                <%= link_to_add_association 'Add An Ingredient', f, 'recipe_ingredients', partial: 'new_recipe_ingredient_fields' %>
+            </div>
+        </div>
+        <h2>Steps</h2>
+        <div id="recipe_steps">
+            <%= f.fields_for :recipe_steps do |step| %>
+                <%= render "new_recipe_step_fields", :f => step %>
+            <% end %>
+            <div class="links">
+                <%= link_to_add_association "Add New Step", f, 'recipe_steps', partial: 'new_recipe_step_fields' %>
+            </div>
+        </div>
+        <%= f.submit "CREATE NEW RECIPE" %>
+    <%end%>
+
+</div>
+
+        <%# 
+        TO DO:
+        ------
+
+        =-=-=-=-=-ADD SETPS TO RECIPES-=-=-=-=-=
+        1) DONE - Verify that the relations are all set up for recipe steps
+        2) Instantiate a Recipe.recipe_steps.new on the recipes controller
+        3) Add the _recipe_step.html.erb partial with the appropriate fields
+        4) Finish up in the new recipe view.
+
+        =-=-=-=-=-SHOW RECIPES IN INDEX=-=-=-=-=
+        1) create a show page that will take the elements of a recipe and display it
+        2) wrap recipes on index page in link wrappers to show page
+
+        =-=-=-=-=-=-RE-DEPLOY DEMO-=-=-=-=-=-=-=
+        1) Re-deploy database 
+        2) Deploy App
+        3) Maybe think about some CI/CD?
+
+        =+=+=+=+=+=+NEXT STEPS+=+=+=+=+=+=+=+
+        1) maybe write some tests ever? 
+         %>
+         
