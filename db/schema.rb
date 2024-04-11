@@ -49,12 +49,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_173209) do
   end
 
   create_table "recipe_steps", force: :cascade do |t|
-    t.bigint "recipes_id"
+    t.bigint "recipe_id"
     t.string "description"
     t.integer "step_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recipes_id"], name: "index_recipe_steps_on_recipes_id"
+    t.index ["recipe_id"], name: "index_recipe_steps_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
