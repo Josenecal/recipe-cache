@@ -38,4 +38,4 @@
 /config/master.key
 
 # Ignore JavaScript vendor directory, will manage @deploy:
-/vendor
+# /vendor
