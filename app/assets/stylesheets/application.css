@@ -200,3 +200,19 @@
     border-radius: 30px;
     padding: 8px;
 }
+.recipe-form {
+    & a {
+        color: white;
+        text-decoration: none;
+    }
+    & a:hover {
+        color: gold;
+        text-decoration: underline;
+    }
+    #recipe_steps {
+        .recipe-step-input {
+            width: 80%;
+            height: 30px;
+        }
+    }
+}

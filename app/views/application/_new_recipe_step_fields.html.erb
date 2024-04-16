@@ -1,7 +1,6 @@
 <div class="nested-fields">
     <div class="field">
-        #<%= f.number_field :step_number %>
-        <%= f.text_field :description, placeholder: "Instructions" %>
+        <%= f.text_field :description, placeholder: "Instructions", class: "recipe-step-input" %>
     </div>
     <%= link_to_remove_association "Remove Step", f %>
 </div>

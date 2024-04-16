@@ -1,35 +1,36 @@
 <div class="main-content">
     <h1>Add A New Recipe</h1>
-    <%= form_for @new_recipe, url: "/recipes/create" do |f| %>
-        <div class="user-attribution_field">
-        <%= f.fields_for :user_recipes do |u| %>
-            <%= u.hidden_field 'user_id', value: @user.id %>
-        <% end %>
-        </div>
-        <h2>Recipe Information</h2>
-        <div class="field"><%= f.text_field :name, placeholder: "TITLE", required: true, class: "input-field" %></div>
-        <div class="field"><%= f.text_field :description, placeholder: "DESCRIPTION" %></div>
-        <h3>Ingredients</h3>
-        <div id="recipe_ingredients">
-            <%= f.fields_for :recipe_ingredients do |recipe_ingredient| %>
-                <%= render "new_recipe_ingredient_fields", :f => recipe_ingredient %>
+    <div class="recipe-form">
+        <%= form_for @new_recipe, url: "/recipes/create" do |f| %>
+            <div class="user-attribution_field">
+            <%= f.fields_for :user_recipes do |u| %>
+                <%= u.hidden_field 'user_id', value: @user.id %>
             <% end %>
-            <div class="links">
-                <%= link_to_add_association 'Add An Ingredient', f, 'recipe_ingredients', partial: 'new_recipe_ingredient_fields' %>
             </div>
-        </div>
-        <h2>Steps</h2>
-        <div id="recipe_steps">
-            <%= f.fields_for :recipe_steps do |step| %>
-                <%= render "new_recipe_step_fields", :f => step %>
-            <% end %>
-            <div class="links">
-                <%= link_to_add_association "Add New Step", f, 'recipe_steps', partial: 'new_recipe_step_fields' %>
+            <h2>Recipe Information</h2>
+            <div class="field"><%= f.text_field :name, placeholder: "TITLE", required: true, class: "input-field" %></div>
+            <div class="field"><%= f.text_field :description, placeholder: "DESCRIPTION" %></div>
+            <h3>Ingredients</h3>
+            <div id="recipe_ingredients">
+                <%= f.fields_for :recipe_ingredients do |recipe_ingredient| %>
+                    <%= render "new_recipe_ingredient_fields", :f => recipe_ingredient %>
+                <% end %>
+                <div class="links">
+                    <%= link_to_add_association 'Add An Ingredient', f, 'recipe_ingredients', partial: 'new_recipe_ingredient_fields' %>
+                </div>
             </div>
-        </div>
-        <%= f.submit "CREATE NEW RECIPE" %>
-    <%end%>
-
+            <h2>Steps</h2>
+            <div id="recipe_steps">
+                <%= f.fields_for :recipe_steps do |step| %>
+                    <%= render "new_recipe_step_fields", :f => step %>
+                <% end %>
+                <div class="links">
+                    <%= link_to_add_association "Add New Step", f, 'recipe_steps', partial: 'new_recipe_step_fields' %>
+                </div>
+            </div>
+            <%= f.submit "CREATE NEW RECIPE" %>
+        <%end%>
+    </div>
 </div>
 
         <%# 
