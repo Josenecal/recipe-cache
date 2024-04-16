@@ -212,7 +212,7 @@
     #recipe_steps {
         .recipe-step-input {
             width: 80%;
-            height: 30px;
+            height: 100px;
         }
     }
 }
