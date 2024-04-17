@@ -5,10 +5,10 @@ class RecipesController < ApplicationController
     end
 
     def new
-        @new_recipe = Recipe.new
-        @new_recipe.recipe_ingredients.new
-        @new_recipe.user_recipes.new
-        @new_recipe.recipe_steps.new
+        @recipe = Recipe.new
+        @recipe.recipe_ingredients.new
+        @recipe.user_recipes.new
+        @recipe.recipe_steps.new
         @user = current_user
     end
 
@@ -32,6 +32,7 @@ class RecipesController < ApplicationController
     end
 
     def edit
+        @user = current_user
         @recipe = Recipe.find_by(id: params[:id])
         if @recipe.nil?
             flash[:error] = "We can't seem to find the recipe you want to edit. Sorry about that."
