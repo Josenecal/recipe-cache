@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "/recipes/:id/edit" => "recipes#edit"
   get "/recipes" => "recipes#index"
   post "/recipes/create" => "recipes#create"
+  patch "/recipes/update" => "recipes#update"
   
   get "/friends" => "friends#index"
 end
