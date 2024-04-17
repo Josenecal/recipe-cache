@@ -24,7 +24,19 @@ class RecipesController < ApplicationController
     end
 
     def show
-        @recipe = Recipe.includes(:recipe_steps, :recipe_ingredients).find(params[:id])
+        @recipe = Recipe.includes(:recipe_steps, :recipe_ingredients).find_by(id: params[:id])
+        if @recipe.nil?
+            flash[:error] = "Sorry, we can't seem to find that recipe right now."
+            redirect_to "/recipes"
+        end
+    end
+
+    def edit
+        @recipe = Recipe.find_by(id: params[:id])
+        if @recipe.nil?
+            flash[:error] = "We can't seem to find the recipe you want to edit. Sorry about that."
+            redirect_to "/recipes"
+        end
     end
 
     private
