@@ -1,4 +1,4 @@
-<%= form_for @new_recipe, url: "/recipes/create", html: { id: "new-recipe-form" } do |f| %>
+<%= form_for @recipe, url: @recipe.persisted? ? "/recipes/update" : "/recipes/create" do |f| %>
             <div class="user-attribution_field">
             <%= f.fields_for :user_recipes do |u| %>
                 <%= u.hidden_field 'user_id', value: @user.id %>
@@ -25,5 +25,5 @@
                     <%= link_to_add_association "Add New Step", f, 'recipe_steps', partial: 'new_recipe_step_fields' %>
                 </div>
             </div>
-            <%= f.submit "CREATE NEW RECIPE" %>
+            <%= f.submit @recipe.persisted? ? "Update Recipe" : "CREATE NEW RECIPE" %>
         <%end%>
