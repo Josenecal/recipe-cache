@@ -40,6 +40,17 @@ class RecipesController < ApplicationController
         end
     end
 
+    def update
+        recipe = Recipe.includes(:recipe_steps, :recipe_ingredients, :user_recipes).find_by(id: params[:recipe][:id])
+        if recipe.update(new_recipe_params)
+            flash[:message] = "Update Successful"
+            redirect_to "/recipes"
+        else
+            flash[:error] = "It broke :/"
+            redirect_to "/recipes"
+        end
+    end
+
     private
 
     def new_recipe_params
@@ -47,7 +58,7 @@ class RecipesController < ApplicationController
             :name,
             :description,
             recipe_ingredients_attributes: [:id, :name, :ammount, :preparation, :_destroy],
-            user_recipes_attributes: [:user_id],
+            user_recipes_attributes: [:id, :user_id],
             recipe_steps_attributes: [:id, :step_number, :description, :_destroy]
             )
     end
