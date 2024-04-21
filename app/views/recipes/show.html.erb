@@ -1,6 +1,11 @@
 <div class='main-content'>
     <div class='display-recipe'>
         <h1><%= @recipe.name %></h1>
+        <div class='link-list'>
+            <ul>
+                <li><%= link_to "EDIT THIS RECIPE", "/recipes/#{@recipe.id}/edit" %></a></li>
+            </ul>
+        </div>
         <p><%= @recipe.description %></p>
         <br>
 
@@ -11,7 +16,7 @@
             <% end %>
         </ul>
         <br>
-        
+
         <h2>Instructions</h2>
         <ol>
             <% @recipe.recipe_steps&.order(:step_number)&.each do |step| %>
