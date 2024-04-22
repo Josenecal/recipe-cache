@@ -29,6 +29,8 @@ class RecipesController < ApplicationController
             flash[:error] = "Sorry, we can't seem to find that recipe right now."
             redirect_to "/recipes"
         end
+        @user_recipe = @recipe.user_recipes.find_by(user_id: current_user&.id)
+        
     end
 
     def edit
