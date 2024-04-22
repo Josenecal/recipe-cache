@@ -1,15 +1,26 @@
 <div class='main-content'>
     <div class='display-recipe'>
         <h1><%= @recipe.name %></h1>
-        <div class='link-list'>
-            <ul>
+        <br>
+        <div class='recipe-links'>
+            <ul class='link-list'>
                 <li><%= link_to "EDIT THIS RECIPE", "/recipes/#{@recipe.id}/edit" %></a></li>
+                <li><%= link_to "SHARE THIS RECIPE", "#", title: "Coming Soon!", class: 'preview-link' %></li>
+
+                <% if @user_recipe.nil? %>
+                    <li><%= link_to "ADD TO LIBRARY", "#", title: "Coming Soon!", class: 'preview-link' %></li>
+                <% else %>
+                    <li><%= link_to "REMOVE FROM LIBRARY", "#", title: "Coming Soon!", class: 'preview-link' %></li>
+                <% end %>
+
             </ul>
         </div>
+        <br>
         <p><%= @recipe.description %></p>
         <br>
 
         <h2>Ingredients</h2>
+        <br>
         <ul>
             <% @recipe.recipe_ingredients&.each do |ingredient| %>
                 <li><%= ingredient.preparation ? "#{ingredient.ammount} #{ingredient.name}, #{ingredient.preparation}" : "#{ingredient.ammount} #{ingredient.name}" %></li>
@@ -18,9 +29,10 @@
         <br>
 
         <h2>Instructions</h2>
+        <br>
         <ol>
             <% @recipe.recipe_steps&.order(:step_number)&.each do |step| %>
-                <li><%= step.description %></li>
+                <li><%= step.description %></li><br>
             <% end %>
         </ol>
     </div>
