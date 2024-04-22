@@ -39,6 +39,9 @@ class RecipesController < ApplicationController
         if @recipe.nil?
             flash[:error] = "We can't seem to find the recipe you want to edit. Sorry about that."
             redirect_to "/recipes"
+        elsif @recipe.author_id != current_user.id
+            flash[:error] = "Sorry, you don't have permission to edit that recipe."
+            redirect_to "/recipes"
         end
     end
 
