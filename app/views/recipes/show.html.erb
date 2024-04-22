@@ -4,7 +4,11 @@
         <br>
         <div class='recipe-links'>
             <ul class='link-list'>
-                <li><%= link_to "EDIT THIS RECIPE", "/recipes/#{@recipe.id}/edit" %></a></li>
+            
+                <% if @recipe.author_id == current_user.id %>
+                    <li><%= link_to "EDIT THIS RECIPE", "/recipes/#{@recipe.id}/edit" %></a></li>
+                <% end %>
+
                 <li><%= link_to "SHARE THIS RECIPE", "#", title: "Coming Soon!", class: 'preview-link' %></li>
 
                 <% if @user_recipe.nil? %>
