@@ -8,6 +8,7 @@
             <div class="field"><%= f.hidden_field :id, value: @recipe.id %>
             <div class="field"><%= f.text_field :name, placeholder: "TITLE", required: true, class: "input-field" %></div>
             <div class="field"><%= f.text_field :description, placeholder: "DESCRIPTION" %></div><br>
+            <div class="field"><%= f.check_box :private, {}, true, false %><%= f.label "MAKE THIS RECIPE PRIVATE?" %>
             <h3>Ingredients</h3>
             <div id="recipe_ingredients">
                 <%= f.fields_for :recipe_ingredients do |recipe_ingredient| %>
