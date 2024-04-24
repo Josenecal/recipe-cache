@@ -8,8 +8,24 @@
     <h3>Try it out!</h3>
     <%= link_to "CREATE A RECIPE", "/recipes/new" %><br>
     <br>
-    <h3>Your Current Recipes</h3>
+
+    <h3>Your Authored Recipes</h3>
+    
+    <% if @authored_recipes.empty? %>
+        <p>You haven't added any recipes</p>
+    <% else %>
+        <% @authored_recipes.each do |recipe| %>
+            <h4><%= link_to "#{recipe.link_name}", "/recipes/#{recipe.id}" %></h4>
+        <% end %>
+    <% end %>
+
+    <h3>Your Saved Recipes</h3>
     <% @user_recipes.each do |recipe| %>
+        <h4><%= link_to "#{recipe.link_name}", "/recipes/#{recipe.id}" %></h4>
+    <%end%>
+
+    <h3>Browse Public Recipes</h3>
+    <% @public_recipes.each do |recipe| %>
         <h4><%= link_to "#{recipe.link_name}", "/recipes/#{recipe.id}" %></h4>
     <%end%>
 
