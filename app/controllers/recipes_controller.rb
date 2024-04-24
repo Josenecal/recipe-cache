@@ -1,7 +1,9 @@
 class RecipesController < ApplicationController
 
     def index
+        @authored_recipes = Recipe.where(author_id: current_user.id)
         @user_recipes = current_user.recipes
+        @public_recipes = Recipe.where(private: false).where.not(id: @user_recipes.pluck(:recipe_id))
     end
 
     def new
@@ -14,6 +16,7 @@ class RecipesController < ApplicationController
 
     def create
         new_recipe = order_children(Recipe.new(new_recipe_params))
+        new_recipe.author_id = current_user.id
         if new_recipe.save
             flash[:message] = "Recipe Created!"
             redirect_to "/recipes"
@@ -24,13 +27,12 @@ class RecipesController < ApplicationController
     end
 
     def show
-        @recipe = Recipe.includes(:recipe_steps, :recipe_ingredients).find_by(id: params[:id])
-        if @recipe.nil?
+        @recipe = Recipe.includes(:recipe_steps, :recipe_ingredients, :user_recipes).find_by(id: params[:id])
+        @user_recipe = @recipe&.user_recipes&.find_by(user_id: current_user.id)
+        if @recipe.nil? || (@recipe.private? && @user_recipe.nil?)
             flash[:error] = "Sorry, we can't seem to find that recipe right now."
             redirect_to "/recipes"
         end
-        @user_recipe = @recipe.user_recipes.find_by(user_id: current_user&.id)
-        
     end
 
     def edit
@@ -62,6 +64,7 @@ class RecipesController < ApplicationController
         params.require(:recipe).permit(
             :name,
             :description,
+            :private,
             recipe_ingredients_attributes: [:id, :name, :ammount, :preparation, :_destroy],
             user_recipes_attributes: [:id, :user_id],
             recipe_steps_attributes: [:id, :step_number, :description, :_destroy]
