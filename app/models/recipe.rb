@@ -19,7 +19,7 @@ class Recipe < ApplicationRecord
     
     def link_name
         if description
-            "#{name} - #{description[0..50]}"
+            "#{name} - #{description}"[0..50]
         else
             name
         end
