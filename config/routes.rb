@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post "/recipes/create" => "recipes#create"
   post "/recipes/:id/users/create" => "user_recipes#create"
   patch "/recipes/update" => "recipes#update"
+  delete "/recipes/:recipe_id/users/:user_id/delete" => "user_recipes#destroy"
   
   get "/friends" => "friends#index"
 end
