@@ -7,13 +7,19 @@ class Recipe < ApplicationRecord
     has_many :ingredients, through: :recipe_ingredients
     has_many :recipe_steps
 
+    belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+
     accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
     accepts_nested_attributes_for :user_recipes, reject_if: :all_blank, allow_destroy: true
     accepts_nested_attributes_for :recipe_steps, reject_if: :all_blank, allow_destroy: true
 
+    def private?
+        private
+    end
+    
     def link_name
         if description
-            "#{name} - #{description[0..50]}"
+            "#{name} - #{description}"[0..50]
         else
             name
         end

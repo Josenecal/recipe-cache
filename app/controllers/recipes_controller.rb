@@ -1,19 +1,22 @@
 class RecipesController < ApplicationController
 
     def index
+        @authored_recipes = Recipe.where(author_id: current_user.id)
         @user_recipes = current_user.recipes
+        @public_recipes = Recipe.where(private: false).where.not(id: @user_recipes.pluck(:recipe_id))
     end
 
     def new
-        @new_recipe = Recipe.new
-        @new_recipe.recipe_ingredients.new
-        @new_recipe.user_recipes.new
-        @new_recipe.recipe_steps.new
+        @recipe = Recipe.new
+        @recipe.recipe_ingredients.new
+        @recipe.user_recipes.new
+        @recipe.recipe_steps.new
         @user = current_user
     end
 
     def create
         new_recipe = order_children(Recipe.new(new_recipe_params))
+        new_recipe.author_id = current_user.id
         if new_recipe.save
             flash[:message] = "Recipe Created!"
             redirect_to "/recipes"
@@ -24,7 +27,35 @@ class RecipesController < ApplicationController
     end
 
     def show
-        @recipe = Recipe.includes(:recipe_steps, :recipe_ingredients).find(params[:id])
+        @recipe = Recipe.includes(:recipe_steps, :recipe_ingredients, :user_recipes).find_by(id: params[:id])
+        @user_recipe = @recipe&.user_recipes&.find_by(user_id: current_user.id)
+        if @recipe.nil? || (@recipe.private? && @user_recipe.nil?)
+            flash[:error] = "Sorry, we can't seem to find that recipe right now."
+            redirect_to "/recipes"
+        end
+    end
+
+    def edit
+        @user = current_user
+        @recipe = Recipe.find_by(id: params[:id])
+        if @recipe.nil?
+            flash[:error] = "We can't seem to find the recipe you want to edit. Sorry about that."
+            redirect_to "/recipes"
+        elsif @recipe.author_id != current_user.id
+            flash[:error] = "Sorry, you don't have permission to edit that recipe."
+            redirect_to "/recipes"
+        end
+    end
+
+    def update
+        recipe = Recipe.includes(:recipe_steps, :recipe_ingredients, :user_recipes).find_by(id: params[:recipe][:id])
+        if recipe.update(new_recipe_params)
+            flash[:message] = "Update Successful"
+            redirect_to "/recipes"
+        else
+            flash[:error] = "It broke :/"
+            redirect_to "/recipes"
+        end
     end
 
     private
@@ -33,8 +64,9 @@ class RecipesController < ApplicationController
         params.require(:recipe).permit(
             :name,
             :description,
+            :private,
             recipe_ingredients_attributes: [:id, :name, :ammount, :preparation, :_destroy],
-            user_recipes_attributes: [:user_id],
+            user_recipes_attributes: [:id, :user_id],
             recipe_steps_attributes: [:id, :step_number, :description, :_destroy]
             )
     end

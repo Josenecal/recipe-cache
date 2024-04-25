@@ -1,9 +1,25 @@
 <div class="main-content">
     <h1>ACTIVITY DASHBOARD</h1>
+    <p>Welcome, and thank you for visiting my demo project! Recipe-Social is a kitchen recordkeeping application that lets users create and share recipes and build their own libraries of other publically shared recipes. What's more, Recipe-Social also lets users track individual attempts at recipes, allowing them to track variables like deviation from the prescribed ingredients or instructions, embellishments or substitutions, as well as the effects on their outcomes. Assuming I can find a hosting service that I can afford, users may even be able to attach media like images and/or videos to these attempts and even to recipes themselves.</p>
     <br>
-    <h3>Status: Preview<h3>
+    <h1>Project Updates</h1>
+    <h2>April 23, 2024 - The Recipe Library</h2>
     <br>
-    <p>This dashbaord will show you your recent activity - recipes added to your libraries or attempt records, pictures etc of any of your recipes - as well as that of your friends who opt-into sharing.</p>
+    <h3>Features and Dev Notes</h3>
     <br>
-    <p>NOTE: This tool is not currently intended to be a social media tool, and sharing isn't really the point of this, so the algorithm here will likely remain very simple as the site progresses.</p>
-</div>
+    <p>Setting this up has been a more significant task than I first realized when conceptualizing this project for one reason in particular - the efficient creation of recipes. The Rails backend of this project (as well as the Postgres) considers a Recipe to be a mere title and description and a few other properties. A textbook recipe's steps and ingredients are their own independent models, and a recipe may have many of both. At the model and database levels, these relationships are as one might expect, but when filling out a form to create a recipe as well as its ingredients and steps, I am faced with the inescapable reality that a recipe may have absolutely any number of either, and that the form would need to be flexible to accomodate this. I wanted the experience to be user-driven, with say a button to add or remove fields for individual ingredients or steps as necessary.</p>
+    <br>
+    <p>This was more difficult than I initially considered. The common concensus from Stack Overflow was that the Cocoon gem would be the easiest way to add this kind of dynamic functionality to the front end of this app, but required some interaction with a Rails feature I'd scarcely interacted with prior to now; the Rails Asset Pipeline. After struggling somewhat to realize that Rails 7 has indeed significantly changed how the asset pipeline works, I was pleasently surprised to find those changes for the better. Pinning libraries using built-in shell commands is a breeze, and bringing in libraries with the import-maps takes is alarmingly straingt-forward. I'm sure there's plenty more to understand about fully leveraging and optomizing this aspect of the framework, but once I realized I needed to look for Rails 7 specific documentation on the matter, getting this gem up and running was easy as pie</p>
+    <br>
+    <p>I think I will eventually open up a new issue to fix some of the clumsy rendering and styling of the form itself, but for now I am pleased to announce that the scaffold is all in place and that Users now have the ability to build libraries of recipes! From the recipes tab, a user can see a link to add a new recipe to the system (which will automatically be added to their library as well). Users can also see an index of public recipes added to the app. If they want to save a public recipe to their own library, users may now do so from the recipe's show page. If the user authored that recipe, they will see an additional link to edit that recipe, which will bring them to the recipe's edit page. This feature is blocked for recipes not authored by the logged-in user.</p>
+    <br>
+    <h3>Next Steps</h3>
+    <br>
+    <p>Next steps of this project are to continue building out the base functionality. There are several clumsy styling choices being made at current, and indeed the CSS file is slowly growing into a small nightmare, but for now the focus is on building basic CRUD functionality. While I'm thrilled to have the recipe portion of this project in relatively complete working order, there are a few more details to work out:<p>
+    <ul>
+        <li>There's currently no way to either delete a recipe (even for the author)</li>
+        <li>Nor to remove a recipe from your library</li>
+        <li>The Share link is also still nonfunctional, and I'm not entirely clear how I want that process to work yet, whether to share a recipe by searching an email, having a list of friends, or both</li>
+    </ul>
+    <br>
+    <p>There's also another major model to put together, but recipe attempts are going to be a little more like social media posts. Adding actual picture attachments will perhpas require a more complicated search for free or low-cost image hosting services, but the framework for the input should be reusable when the time comes to build forms for rendering Recipe Attempt show and edit views. Hopefully I can get some basic level of this working soon for a new release, as well as the issues above</p>
