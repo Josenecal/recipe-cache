@@ -14,7 +14,7 @@
                 <% if @user_recipe.nil? %>
                     <li><%= link_to "ADD TO LIBRARY", "/recipes/#{@recipe.id}/users/create", method: 'post', data: {turbo_method: :post} %></li>
                 <% else %>
-                    <li><%= link_to "REMOVE FROM LIBRARY", "#", title: "Coming Soon!", class: 'preview-link' %></li>
+                    <li><%= link_to "REMOVE FROM LIBRARY", "/recipes/#{@recipe.id}/users/#{current_user.id}/delete", method: 'delete', data: {turbo_method: :delete} %></li>
                 <% end %>
 
             </ul>
