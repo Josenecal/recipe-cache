@@ -34,7 +34,7 @@
  }
  nav {
     /* The navigation menu */
-.navbar {
+  .navbar {
     overflow: hidden;
     background-color: #333;
   }
@@ -70,7 +70,7 @@
   }
   
   /* Add a red background color to navigation links on hover */
-  .navbar a:hover, .subnav:hover .subnavbtn {
+  .navbar a:hover, .subnav:hover .subnav-btn:hover {
     background-color: red;
   }
   
@@ -127,7 +127,7 @@
             border-radius: 10%;
         }
     } */
-}
+
 .background-screen {
     height: 100vh;
     width: 100%;
