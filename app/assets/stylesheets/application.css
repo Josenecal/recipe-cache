@@ -36,7 +36,18 @@
     /* The navigation menu */
   .navbar {
     overflow: hidden;
-    background-color: #333;
+    background-color: inherit;
+    width: 60%;
+    min-width: 300px;
+    margin: 10px auto;
+  }
+
+  .acct-links {
+    float: right;
+
+    .subnav-btn {
+        float: right;
+    }
   }
   
   /* Navigation links */
@@ -54,7 +65,7 @@
   .subnav {
     float: left;
     overflow: hidden;
-    display: block;
+    display: inline;
   }
   
   /* Subnav button */
@@ -70,18 +81,32 @@
   }
   
   /* Add a red background color to navigation links on hover */
-  .navbar a:hover, .subnav:hover .subnav-btn:hover {
-    background-color: red;
+  .navbar a:hover, .subnav-btn:hover {
+    border-color: darkgoldenrod;
+    border: solid;
+    border-radius: 15px;
+    background-color: white;
+    color: darkgoldenrod;
+  }
+
+  .subnav:hover {
+    border: solid;
+    border-color: darkgoldenrod;
+    border-radius: 15px;
+    padding: 8px;
   }
   
   /* Style the subnav content - positioned absolute */
   .subnav-content {
     display: none;
-    position: absolute;
-    left: 0;
-    background-color: red;
-    width: 100%;
+    background-color: darkgoldenrod;
+    width: max-content;
     z-index: 1;
+
+    & ul {
+        list-style-type: none;
+        display: inherit;
+    }
   }
   
   /* Style the subnav links */
@@ -93,40 +118,23 @@
   
   /* Add a grey background color on hover */
   .subnav-content a:hover {
-    background-color: #eee;
-    color: black;
+    background-color: whitesmoke;
+    color: darkgoldenrod;
+    border-radius: 15px;
   }
   
   /* When you move the mouse over the subnav container, open the subnav content */
   .subnav:hover .subnav-content {
     display: block;
+    position: center;
+    background-color: darkgoldenrod;
+
+    & ul {
+        background-color: darkgoldenrod;
+    }
   }
 
 }
-    /* .primary-nav {
-        background-color: #060609;
-        list-style-type: none;
-        display: inline-block;
-         
-        & a {
-            text-align: center;
-            margin: 0;
-            display: inline-block;
-            inline-size: 16%;
-            min-inline-size: 100px;
-            background-color: #060609;
-            color: white;
-            text-decoration-line: none;
-        } 
-
-        & a:hover {
-            color: goldenrod;
-            size: 2em;
-            border: solid;
-            border-color: goldenrod;
-            border-radius: 10%;
-        }
-    } */
 
 .background-screen {
     height: 100vh;
@@ -266,6 +274,7 @@
     color: whitesmoke;
     text-align: justify;
     width: 60%;
+    min-width: 300px;
     margin: 10px auto;
     border-width: 4px;
     border-color: whitesmoke;
@@ -273,6 +282,7 @@
     border-radius: 30px;
     padding: 8px;
 }
+
 .display-recipe {
     .recipe-links {
         .link-list {
