@@ -285,7 +285,7 @@
         padding: 8px;
     }
 
-    ul {
+    ul, ol {
         margin-inline: 25px;
      }
 }

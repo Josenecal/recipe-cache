@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
 
     def show
         @recipe = Recipe.includes(:recipe_steps, :recipe_ingredients, :user_recipes).find_by(id: params[:id])
-        @user_recipe = @recipe&.user_recipes&.find_by(user_id: current_user.id)
+        @user_recipe = @recipe&.user_recipes&.find_by(user_id: current_user&.id)
         if @recipe.nil? || (@recipe.private? && @user_recipe.nil?)
             flash[:error] = "Sorry, we can't seem to find that recipe right now."
             redirect_to "/recipes"
