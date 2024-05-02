@@ -1,9 +1,15 @@
 class RecipesController < ApplicationController
 
+    skip_before_action :require_login, only: [:index, :show]
+
     def index
-        @authored_recipes = Recipe.where(author_id: current_user.id)
-        @user_recipes = current_user.recipes
-        @public_recipes = Recipe.where(private: false).where.not(id: @user_recipes.pluck(:recipe_id))
+        if logged_in?
+            @authored_recipes = Recipe.where(author_id: current_user.id)
+            @user_recipes = current_user.recipes
+            @public_recipes = Recipe.where(private: false).where.not(id: @user_recipes.pluck(:recipe_id))
+        else
+            @public_recipes = Recipe.where(private: false)
+        end
     end
 
     def new

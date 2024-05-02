@@ -26,41 +26,115 @@
     padding: 0;
     font-family: sans-serif;
  }
- li {
-    margin-left: 12px;
- }
+
  body {
     background-color: #060609;
  }
  nav {
-    & ul {
-        background-color: #060609;
-        list-style-type: none;
-        
-        & li {
-            text-align: center;
-            margin: 0;
-            display: inline-block;
-            inline-size: 16%;
-            min-inline-size: 100px;
-            background-color: #060609;
-        } 
+    /* The navigation menu */
+  .navbar {
+    overflow: hidden;
+    background-color: inherit;
+    width: 60%;
+    min-width: 300px;
+    margin: 10px auto;
+  }
 
-        
-        & a {
-            color: white;
-            text-decoration-line: none;
-        }
-        
-        & a:hover {
-            color: goldenrod;
-            size: 2em;
-            border: solid;
-            border-color: goldenrod;
-            border-radius: 10%;
-        }
+  .acct-links {
+    float: right;
+
+    .subnav-btn {
+        float: right;
     }
+    
+  }
+  
+  /* Navigation links */
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* The subnavigation menu */
+  .subnav {
+    float: left;
+    overflow: hidden;
+    display: inline;
+  }
+  
+  /* Subnav button */
+  .subnav .subnav-btn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  
+  /* Add a red background color to navigation links on hover */
+  .navbar a:hover, .subnav-btn:hover {
+    border-color: darkgoldenrod;
+    border: solid;
+    border-radius: 15px;
+    background-color: white;
+    color: darkgoldenrod;
+  }
+
+  .subnav:hover {
+    border: solid;
+    border-color: darkgoldenrod;
+    border-radius: 15px;
+    padding: 8px;
+  }
+  
+  /* Style the subnav content - positioned absolute */
+  .subnav-content {
+    display: none;
+    background-color: darkgoldenrod;
+    width: max-content;
+    z-index: 1;
+
+    & ul {
+        list-style-type: none;
+        display: inherit;
+    }
+  }
+  
+  /* Style the subnav links */
+  .subnav-content a {
+    float: left;
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Add a grey background color on hover */
+  .subnav-content a:hover {
+    background-color: whitesmoke;
+    color: darkgoldenrod;
+    border-radius: 15px;
+  }
+  
+  /* When you move the mouse over the subnav container, open the subnav content */
+  .subnav:hover .subnav-content {
+    display: block;
+    position: center;
+    background-color: darkgoldenrod;
+
+    & ul {
+        background-color: darkgoldenrod;
+    }
+  }
+
 }
+
 .background-screen {
     height: 100vh;
     width: 100%;
@@ -197,15 +271,25 @@
 }
 .main-content {
     color: whitesmoke;
-    text-align: justify;
+    text-align: left;
     width: 60%;
+    min-width: 300px;
     margin: 10px auto;
     border-width: 4px;
     border-color: whitesmoke;
     border: solid;
     border-radius: 30px;
     padding: 8px;
+
+    & p {
+        padding: 8px;
+    }
+
+    ul {
+        margin-inline: 25px;
+     }
 }
+
 .display-recipe {
     .recipe-links {
         .link-list {

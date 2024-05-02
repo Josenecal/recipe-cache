@@ -3,6 +3,28 @@
     <p>Welcome, and thank you for visiting my demo project! Recipe-Social is a kitchen recordkeeping application that lets users create and share recipes and build their own libraries of other publically shared recipes. What's more, Recipe-Social also lets users track individual attempts at recipes, allowing them to track variables like deviation from the prescribed ingredients or instructions, embellishments or substitutions, as well as the effects on their outcomes. Assuming I can find a hosting service that I can afford, users may even be able to attach media like images and/or videos to these attempts and even to recipes themselves.</p>
     <br>
     <h1>Project Updates</h1>
+    <br>
+    <hr>
+    <br>
+    <h2>May 2, 2024</h2>
+    <br>
+    <h3>New Features and Dev Notes</h3>
+    <br>
+    <p>Hello Nav-bar! Now that this site has some resource-specific links, I wanted to set up a drop-down style subnavigation bar for recipe and account management links. This was accomplished entirely using HTML and CSS, no JavaScript on this one! While the new nav-bar features are likely the most obvious updates for existing users, returning users and visitors may note that the landing page has updated as well! This Blog page, as well as public recipes and individual recipe show pages are now accessable without logging in! Some features will be hidden (like adding new recipes) or otherwise disabled, but this should make for a more friendly reception for new users, giving them a chance to explore without necessarily signing up.</p>
+    <br>
+    <h3>Next Steps</h3>
+    <br>
+    <p>Next steps of this project are to continue building out the base functionality. There are several clumsy styling choices being made at current, and indeed the CSS file is slowly growing into a small nightmare, but for now the focus is on building basic CRUD functionality. While I'm thrilled to have the recipe portion of this project in relatively complete working order, there are a few more details to work out:</p>
+    <ul>
+        <li>There's currently no way to either delete a recipe (even for the author)</li>
+        <li>Nor to remove a recipe from your library</li>
+        <li>The Share link is also still nonfunctional, and I'm not entirely clear how I want that process to work yet, whether to share a recipe by searching an email, having a list of friends, or both</li>
+    </ul>
+    <br>
+    <p>There's also another major model to put together, but recipe attempts are going to be a little more like social media posts. Adding actual picture attachments will perhpas require a more complicated search for free or low-cost image hosting services, but the framework for the input should be reusable when the time comes to build forms for rendering Recipe Attempt show and edit views. Hopefully I can get some basic level of this working soon for a new release, as well as the issues above</p>
+    <br><hr><br>
+
+
     <h2>April 23, 2024 - The Recipe Library</h2>
     <br>
     <h3>Features and Dev Notes</h3>
@@ -15,11 +37,5 @@
     <br>
     <h3>Next Steps</h3>
     <br>
-    <p>Next steps of this project are to continue building out the base functionality. There are several clumsy styling choices being made at current, and indeed the CSS file is slowly growing into a small nightmare, but for now the focus is on building basic CRUD functionality. While I'm thrilled to have the recipe portion of this project in relatively complete working order, there are a few more details to work out:<p>
-    <ul>
-        <li>There's currently no way to either delete a recipe (even for the author)</li>
-        <li>Nor to remove a recipe from your library</li>
-        <li>The Share link is also still nonfunctional, and I'm not entirely clear how I want that process to work yet, whether to share a recipe by searching an email, having a list of friends, or both</li>
-    </ul>
-    <br>
-    <p>There's also another major model to put together, but recipe attempts are going to be a little more like social media posts. Adding actual picture attachments will perhpas require a more complicated search for free or low-cost image hosting services, but the framework for the input should be reusable when the time comes to build forms for rendering Recipe Attempt show and edit views. Hopefully I can get some basic level of this working soon for a new release, as well as the issues above</p>
+    <p> Updates in the coming weeks could be a bit slower! I am starting to work through some proper front-end curiculum, and so I might try to complement that with some light work updating the nav-bar. Ideally, now that this application has some resource-based links people could want to visit, I'd like to set this up as a dropdown subnavigation, which I think I could even do with pure CSS and no JavaScript. Stay tuned!</p>
+    

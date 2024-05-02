@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root "session#index"
+  root "dashboard#index"
 
   get "/logout" => "session#destroy"
+  get "/login" => "session#index"
 
   get "/dashboard" => "dashboard#index"
 

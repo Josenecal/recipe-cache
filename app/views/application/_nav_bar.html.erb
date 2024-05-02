@@ -1,21 +1,34 @@
-<nav class="nav-bar">
-    <span>
-    <ul class="nav-items">
-        <li>
-            <%= image_tag 'logo.png', class: "project-logo", alt: "The Recipe Social" %>
-        </li>
-        <li class="nav-bar-link" id="nbltd">
-            <a class="link-to-dashboard" href="/dashboard">HOME</a>
-        </li>
-        <li class="nav-bar-link" id="nbltr">
-            <a class="link-to-recipes" href="/recipes">RECIPES</a>
-        </li>
-        <li class="nav-bar-link" id=nbltf>
-            <a class="link-to-friends" href="/friends">FRIENDS</a>
-        </li>
-        <li class="nav-bar-link" id=nblo>
-            <a class="link-to-logout" href="/logout">LOG OUT</a>
-        </li>
-    </ul>
-    </span>
-</nav>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<nav>
+    <%= image_tag 'logo.png', class: "project-logo", alt: "The Recipe Social" %>
+    <div class="navbar">
+    <a class="subnav-btn" href="/dashboard">HOME</a>
+    <div class='subnav'>
+        <%= button_to "RECIPES", {controller: "recipes", action: "index"}, {class: "subnav-btn", method: :get} %>
+        <div class=subnav-content>
+            <ul>
+                <li><a href="#" title="Coming Soon!">BROWSE RECIPES</a></li>
+                <% if logged_in? %>
+                    <li><a href="/recipes/new">ADD A RECIPE</a></li>
+                    <li><a href="#" title="Coming Soon!">SAVED RECIPES</a></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+    <div class="acct-links">
+        <div class="subnav">
+            <button class="subnav-btn">ACCOUNT</button>
+            <div class="subnav-content">
+            <ul>
+                <% if logged_in? %>
+                    <li><%= link_to('UPDATE ACCT', '#', title: 'Coming Soon!') %></li>
+                    <li><%= link_to('LOG OUT', '/logout', data: { turbo: false }) %></li>
+                <% else %>
+                    <li><a href="/login">LOG IN / SIGN UP</a></li>
+                <% end %>
+            </ul>
+            </div>
+        </div>
+    </div>
+</nav>  
