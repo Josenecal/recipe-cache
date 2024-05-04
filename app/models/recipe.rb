@@ -16,6 +16,10 @@ class Recipe < ApplicationRecord
     def private?
         private
     end
+
+    def authored_by?(user_id)
+        author_id == user_id
+    end
     
     def link_name
         if description
