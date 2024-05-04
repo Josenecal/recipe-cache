@@ -9,4 +9,8 @@ class User < ApplicationRecord
     def full_name
         "#{first_name} #{last_name}"
     end
+
+    def can_delete?(recipe)
+        recipe.authored_by?(id)
+    end
 end
