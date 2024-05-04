@@ -21,7 +21,7 @@ class RecipesController < ApplicationController
     end
 
     def create
-        new_recipe = order_children(Recipe.new(new_recipe_params))
+        new_recipe = order_children(Recipe.new(new_params))
         new_recipe.author_id = current_user.id
         if new_recipe.save
             flash[:message] = "Recipe Created!"
@@ -54,8 +54,9 @@ class RecipesController < ApplicationController
     end
 
     def update
-        recipe = Recipe.includes(:recipe_steps, :recipe_ingredients, :user_recipes).find_by(id: params[:recipe][:id])
-        if recipe.update(new_recipe_params)
+        recipe = Recipe.includes(:recipe_steps, :recipe_ingredients, :user_recipes).find_by(id: update_params[:id])
+        
+        if recipe.update(update_params)
             flash[:message] = "Update Successful"
             redirect_to "/recipes"
         else
@@ -64,17 +65,46 @@ class RecipesController < ApplicationController
         end
     end
 
+    def destroy
+        recipe = Recipe.includes(:recipe_steps, :recipe_ingredients, :user_recipes).find_by(id: recipe_id_param)
+
+        if recipe && current_user.can_delete?(recipe)
+            recipe.destroy
+            redirect_to root_path
+        else
+            flash[:error] = "permission denied"
+            redirect_back_or_to root_path
+        end
+    end
+
     private
 
-    def new_recipe_params
+    def new_params
         params.require(:recipe).permit(
             :name,
             :description,
             :private,
+            recipe_ingredients_attributes: [:name, :ammount, :preparation, :_destroy],
+            user_recipes_attributes: [:user_id],
+            recipe_steps_attributes: [:step_number, :description, :_destroy]
+            )
+    end
+
+    def update_params
+        params.require(:recipe).permit(
+            :id,
+            :name,
+            :description,
+            :private,
+            :_destroy,
             recipe_ingredients_attributes: [:id, :name, :ammount, :preparation, :_destroy],
             user_recipes_attributes: [:id, :user_id],
             recipe_steps_attributes: [:id, :step_number, :description, :_destroy]
             )
+    end
+
+    def recipe_id_param
+        params.permit(:id)[:id].to_i
     end
 
     def order_children(recipe)
