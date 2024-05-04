@@ -3,7 +3,7 @@
 <nav>
     <%= image_tag 'logo.png', class: "project-logo", alt: "The Recipe Social" %>
     <div class="navbar">
-    <a class="subnav-btn" href="/dashboard">HOME</a>
+    <%= link_to "HOME", root_path, class: 'subnav-btn' %>
     <div class='subnav'>
         <%= button_to "RECIPES", {controller: "recipes", action: "index"}, {class: "subnav-btn", method: :get} %>
         <div class=subnav-content>
