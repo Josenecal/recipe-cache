@@ -6,8 +6,6 @@ class UserRecipesController < ApplicationController
             user_id: current_user.id
         )
 
-        puts params
-
         if user_recipe.save
             flash[:message] = "Recipe Successfully Saved!"
             redirect_back_or_to "/recipes"
@@ -31,8 +29,6 @@ class UserRecipesController < ApplicationController
     end
 
     private
-
-    # Strong params
 
     def user_recipe_identifier
         params.permit(:id)[:id]
