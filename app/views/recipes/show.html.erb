@@ -8,15 +8,16 @@
                 <ul class='link-list'>
                 
                     <% if  @recipe.author_id == current_user.id %>
-                        <li><%= link_to "EDIT THIS RECIPE", "/recipes/#{@recipe.id}/edit" %></a></li>
+                        <li><%= link_to "EDIT THIS RECIPE", "/recipes/#{ @recipe.id }/edit" %></a></li>
+                        <li><%= link_to "DELETE THIS RECIPE", "/recipes/#{ @recipe.id }", method: 'delete', data: { turbo_method: :delete } %>
                     <% end %>
 
                     <li><%= link_to "SHARE THIS RECIPE", "#", title: "Coming Soon!", class: 'preview-link' %></li>
 
                     <% if @user_recipe.nil? %>
-                        <li><%= link_to "ADD TO LIBRARY", "/recipes/#{@recipe.id}/users/create", method: 'post', data: {turbo_method: :post} %></li>
+                        <li><%= link_to "ADD TO LIBRARY", "/user/recipes?recipe_id=#{ @recipe.id }", method: 'post', data: { turbo_method: :post } %></li>
                     <% else %>
-                        <li><%= link_to "REMOVE FROM LIBRARY", "/recipes/#{@recipe.id}/users/#{current_user.id}/delete", method: 'delete', data: {turbo_method: :delete} %></li>
+                        <li><%= link_to "REMOVE FROM LIBRARY", "/user/recipes/#{ @user_recipe.id }", method: 'delete', data: { turbo_method: :delete } %></li>
                     <% end %>
 
                 </ul>

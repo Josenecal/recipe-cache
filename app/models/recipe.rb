@@ -1,11 +1,12 @@
 class Recipe < ApplicationRecord
     has_many :user_recipes
-    has_many :users, through: :user_recipes
+    has_many :users, through: :user_recipes, dependent: :destroy
+    # TO-DO: Uncomment these lines when recipe attempts are implemented!
     # has_many: :recipe_attempts
     # has_many :attempts, through: :recipe_attempts
-    has_many :recipe_ingredients, inverse_of: :recipe
+    has_many :recipe_ingredients, inverse_of: :recipe, dependent: :destroy
     has_many :ingredients, through: :recipe_ingredients
-    has_many :recipe_steps
+    has_many :recipe_steps, dependent: :destroy
 
     belongs_to :author, class_name: 'User', foreign_key: 'author_id'
 
@@ -15,6 +16,10 @@ class Recipe < ApplicationRecord
 
     def private?
         private
+    end
+
+    def authored_by?(user_id)
+        author_id == user_id
     end
     
     def link_name

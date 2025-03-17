@@ -5,13 +5,15 @@
             <button class="form-toggle-button" id="session-form-login-toggle-button" onclick="login()">LOG IN</button>
             <button class="form-toggle-button" id="session-form-register-toggle-button" onclick="register()">REGISTER</button>
         </div>
-        <%= form_with url: "/user/login", local: true, class: "session-form", id: "login-form" do |f| %>
+        <%# form_with url: "/user/login", local: true, class: "session-form", id: "login-form" do |f| %>
+        <%= form_with url: '/session', local: true, class: 'session-form', id: 'login-form' do |f| %>
             <%= f.email_field :login_email, required: true, placeholder: "EMAIL", class: "input-field" %><br>
             <%= f.password_field :login_password, required: true, placeholder: "PASSWORD", class: "input-field" %><br>
             <%= f.submit "LOG IN", class: "submit-button" %>
         <% end %>
 
-        <%= form_with url: "/user/create", local: true, class: "session-form", id: "registration-form" do |f| %>
+        <%# form_with url: "/user/create", local: true, class: "session-form", id: "registration-form" do |f| %>
+        <%= form_with model: User.new, local: true, class: 'session-form', id: 'registration-form' do |f| %>
             <%= f.text_field :first_name, required: true, placeholder: "FIRST NAME", class: "input-field" %><br>
             <%= f.text_field :last_name, required: true, placeholder: "LAST NAME", class: "input-field" %><br>
             <%= f.email_field :email, required: true, placeholder: "EMAIL", class: "input-field" %><br>

@@ -10,22 +10,23 @@ Rails.application.routes.draw do
 
   root "dashboard#index"
 
-  get "/logout" => "session#destroy"
-  get "/login" => "session#index"
+  # Create more intuitive login and logout routes
 
-  get "/dashboard" => "dashboard#index"
+  get "/logout" => "sessions#destroy"
+  get "/login" => "sessions#index"
 
-  post "/user/create" => "user#create" 
-  post "/user/login" => "user#login"
+  resource :session, only: [:create, :destroy]
+  resolve('Session') { [:session]}
 
-  get "/recipes/new" => "recipes#new"
-  get "/recipes/:id" => "recipes#show"
-  get "/recipes/:id/edit" => "recipes#edit"
-  get "/recipes" => "recipes#index"
-  post "/recipes/create" => "recipes#create"
-  post "/recipes/:id/users/create" => "user_recipes#create"
-  patch "/recipes/update" => "recipes#update"
-  delete "/recipes/:recipe_id/users/:user_id/delete" => "user_recipes#destroy"
-  
-  get "/friends" => "friends#index"
+  resource :user, except: [:new] do # New User form embedded in new session view
+    resources :recipes, only: [:index, :create, :destroy], controller: :user_recipes
+  end
+  resolve('User') { [:user] }
+
+  resources :recipes 
+    # resources :steps, only: [:create, :update, :destroy]
+    # resources :ingredients, only: [:create, :update, :destroy]
+    
+
+  resources :friends
 end
