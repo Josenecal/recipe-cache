@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
     has_many :user_recipes
     has_many :users, through: :user_recipes, dependent: :destroy
+    # TO-DO: Uncomment these lines when recipe attempts are implemented!
     # has_many: :recipe_attempts
     # has_many :attempts, through: :recipe_attempts
     has_many :recipe_ingredients, inverse_of: :recipe, dependent: :destroy
